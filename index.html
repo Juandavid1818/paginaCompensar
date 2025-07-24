@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Copa de Soñadores</title>
-  <link rel="stylesheet" href=".\assets\css\style.css" />
-  <link rel="icon" href=".\assets\incons\jornada escula normal.png" type="image/x-icon">
-  <script defer src=".\assets\scripts\main.js"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="icon" href="./assets/incons/jornada-escuela-normal.png" type="image/x-icon" />
+
+  <!-- Scripts -->
+  <script defer src="./assets/scripts/main.js"></script>
+  <script defer src="./assets/scripts/include.js"></script>
 </head>
 
 <body>
-  
   <div id="header"></div>
-  <!-- ========== HEADER ========== -->
+
   <!-- ========== MAIN ========== -->
   <main>
-    
-    <!-- Carrusel automático full-width -->
+    <!-- Carrusel -->
     <section class="carrusel">
-  <div class="carrusel-overlay"></div>
-  <div class="carrusel-texto">
-    <h1>Copa de Soñadores</h1>
-    <p>Unidos por el deporte y los sueños de nuestros jóvenes</p>
-  </div>
-  <div class="carrusel-container">
-    <div class="slide active">
-      <img src="./assets/images/carrusel/carru_1.jpg" alt="1" />
-    </div>
-    <div class="slide">
-      <img src="./assets/images/carrusel/carru_3.jpg" alt="2" />
-    </div>
-    <div class="slide">
-      <img src="./assets/images/carrusel/carru_2.jpg" alt="3" />
-    </div>
-  </div>
-</section>
-    <!-- Tabs con fondo e integración -->
+      <div class="carrusel-overlay"></div>
+      <div class="carrusel-texto">
+        <h1>Copa de Soñadores</h1>
+        <p>Unidos por el deporte y los sueños de nuestros jóvenes</p>
+      </div>
+      <div class="carrusel-container">
+        <div class="slide active">
+          <img src="./assets/images/carrusel/carru_1.jpg" alt="Imagen 1" />
+        </div>
+        <div class="slide">
+          <img src="./assets/images/carrusel/carru_3.jpg" alt="Imagen 2" />
+        </div>
+        <div class="slide">
+          <img src="./assets/images/carrusel/carru_2.jpg" alt="Imagen 3" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de tabs -->
     <section class="tabs main-fondo">
       <div class="tab-buttons">
         <button class="tab active" data-tab="noticias">Noticias</button>
@@ -44,103 +47,85 @@
         <button class="tab" data-tab="tabla">Tabla</button>
         <button class="tab" data-tab="fixture">Fixture</button>
       </div>
+
       <div class="tab-container">
-        <!-- Noticias con cards -->
+        <!-- Noticias -->
         <div id="noticias" class="tab-contenido active">
           <h3>Últimas Noticias</h3>
           <div class="card-container">
-            <!-- Card 1 -->
-            <a href=".\pages\noticia.html" class="card">
-              <img src=".\assets\images\noticias/cambio_1.jpeg" alt="Noticia 1">
+            <a href="./pages/noticia.html" class="card">
+              <img src="./assets/images/noticias/cambio_1.jpeg" alt="Noticia 1" />
               <h4>Gran inauguración de la Copa</h4>
               <p>Más de 500 estudiantes participaron en el evento de apertura.</p>
             </a>
-            <!-- Card 2 -->
-            <a href=".\pages\noticia.html" class="card">
-              <img src=".\assets\images\noticias/uniformes.jpeg" alt="Noticia 2">
+            <a href="./pages/noticia.html" class="card">
+              <img src="./assets/images/noticias/uniformes.jpeg" alt="Noticia 2" />
               <h4>Primera jornada llena de emoción</h4>
               <p>Goles, atajadas y mucho talento en los primeros partidos.</p>
             </a>
-
-            <!-- Card 3 -->
-            <a href=".\pages\noticia.html" class="card">
-              <img src=".\assets\images\noticias/papas.jpeg" alt="Noticia 3">
+            <a href="./pages/noticia.html" class="card">
+              <img src="./assets/images/noticias/papas.jpeg" alt="Noticia 3" />
               <h4>Avanza la Copa con éxito</h4>
               <p>Equipos de distintas sedes demostrando compromiso y juego limpio.</p>
             </a>
           </div>
         </div>
 
+        <!-- Reglamento -->
         <div id="reglamento" class="tab-contenido">
-  <div class="recuadro-pdf">
-    <h3>Reglamento Oficial</h3>
-    <iframe src="./assets/docs/Reglamento_CopaCompensar JECS.pdf" width="100%" height="600px"></iframe>
-  </div>
-</div>
+          <div class="recuadro-pdf">
+            <h3>Reglamento Oficial</h3>
+            <iframe src="./assets/docs/Reglamento_CopaCompensar-JECS.pdf" width="100%" height="600px"></iframe>
+          </div>
+        </div>
+
+        <!-- Tabla -->
         <div id="tabla" class="tab-contenido">
           <h3>Tabla de Posiciones</h3>
           <p>Datos de tabla...</p>
         </div>
+
+        <!-- Fixture -->
         <div id="fixture" class="tab-contenido">
-   <!--=======CALENDARIO INDEX-->
-   <div class="calendario-titulo">
-  <h2>Partidos programados..</h2>
-  <p></p>
-</div>
-<div class="calendario-mes">
-  <div class="calendario-header">
-    <button onclick="cambiarMes(-1)">&#8249;</button>
-    <span id="nombreMes"></span>
-    <button onclick="cambiarMes(1)">&#8250;</button>
-  </div>
-  <div class="calendario-dias">
-    <div>DOM</div>
-    <div>LUN</div>
-    <div>MAR</div>
-    <div>MIÉ</div>
-    <div>JUE</div>
-    <div>VIE</div>
-    <div>SÁB</div>
-  </div>
-  <div class="calendario-celdas" id="calendario"></div>
-</div>
-
-
-          
+          <div class="calendario-titulo">
+            <h2>Partidos programados...</h2>
+          </div>
+          <div class="calendario-mes">
+            <div class="calendario-header">
+              <button onclick="cambiarMes(-1)">&#8249;</button>
+              <span id="nombreMes"></span>
+              <button onclick="cambiarMes(1)">&#8250;</button>
+            </div>
+            <div class="calendario-dias">
+              <div>DOM</div><div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div>
+            </div>
+            <div class="calendario-celdas" id="calendario"></div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Galería -->
     <section class="galeria-principal">
-  <h2 class="galeria-titulo">Galería de Imágenes</h2>
-  <div class="galeria-imagenes-grid">
-    <img src="assets/images/galeria/prueba_1.jpeg" alt="Imagen 1" />
-    <img src="assets/images/galeria/prueba_2.jpeg" alt="Imagen 2" />
-    <img src="assets/images/galeria/prueba_3.jpeg" alt="Imagen 3" />
-    <img src="assets/images/galeria/prueba_4.jpeg" alt="Imagen 4" />
-    <img src="assets/images/galeria/prueba_5.jpeg" alt="Imagen 5" />
-    <img src="assets/images/galeria/prueba_6.jpeg" alt="Imagen 6" />
-  </div>
+      <h2 class="galeria-titulo">Galería de Imágenes</h2>
+      <div class="galeria-imagenes-grid">
+        <img src="./assets/images/galeria/prueba_1.jpeg" alt="Imagen 1" />
+        <img src="./assets/images/galeria/prueba_2.jpeg" alt="Imagen 2" />
+        <img src="./assets/images/galeria/prueba_3.jpeg" alt="Imagen 3" />
+        <img src="./assets/images/galeria/prueba_4.jpeg" alt="Imagen 4" />
+        <img src="./assets/images/galeria/prueba_5.jpeg" alt="Imagen 5" />
+        <img src="./assets/images/galeria/prueba_6.jpeg" alt="Imagen 6" />
+      </div>
 
-  <!-- Lightbox -->
-  <div id="galeria-lightbox" class="galeria-lightbox">
-    <span class="galeria-lightbox-close">&times;</span>
-    <img class="galeria-lightbox-img" src="" alt="Imagen ampliada" />
-    <span class="galeria-lightbox-prev">&#10094;</span>
-    <span class="galeria-lightbox-next">&#10095;</span>
-  </div>
-</section>
-
+      <div id="galeria-lightbox" class="galeria-lightbox">
+        <span class="galeria-lightbox-close">&times;</span>
+        <img class="galeria-lightbox-img" src="" alt="Imagen ampliada" />
+        <span class="galeria-lightbox-prev">&#10094;</span>
+        <span class="galeria-lightbox-next">&#10095;</span>
+      </div>
+    </section>
   </main>
-  <script defer src="./assets/scripts/main.js"></script>
+
   <div id="footer"></div>
-  
-
-  <!-- Correcto -->
-<script src="./assets/scripts/include.js"></script>
-
-
-  <!-- ========== FOOTER ========== -->
-
 </body>
-
 </html>
