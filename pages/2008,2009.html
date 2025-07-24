@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipos 2008</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="../assets/incons/jornada escula normal.png" type="image/x-icon">
+  <style>
+    .calendario-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .partido {
+      display: flex;
+      align-items: flex-start;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .fecha-hora {
+      width: 80px;
+      font-size: 14px;
+      color: #f15a29;
+      text-align: center;
+      font-weight: bold;
+    }
+    .info {
+      flex: 1;
+      padding-left: 15px;
+    }
+    .fase {
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+    .torneo {
+      font-size: 14px;
+      color: #555;
+    }
+    .equipos {
+      margin: 6px 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .lugar {
+      font-size: 14px;
+      color: #777;
+    }
+    .paginacion {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 20px;
+    }
+    .paginacion button {
+      background-color: #f15a29;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .paginacion button.activo {
+      background-color: #c44015;
+    }
+    .paginacion button:hover {
+      background-color: #e04f1d;
+    }
+    .tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.tab {
+  background-color: #ffe4d8;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border-radius: 10px 10px 0 0;
+  color: #333;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.tab:hover {
+  border-bottom: 4px solid #e64a19;
+  color: #e64a19;
+}
+
+.tab.active {
+  border-bottom: 4px solid #e64a19;
+  color: #e64a19;
+}
+
+.tab-content {
+  display: none;
+  padding: 1.5rem 1rem 1rem 1rem;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-top: -4px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+    
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div id="header"></div>
+  <main class="main-fondo-blanco" class="categoria-page">
+    <h1 class="categoria-titulo">CATEGORÍA 2008-2009</h1>
+    <div class="equipos-galeria">
+      <div class="equipo-card">
+        <img src="../assets/images/card_equipos/equipo_prueba.jpeg" alt="Concientizar">
+        <h3>Concientizar</h3>
+      </div>
+      <div class="equipo-card">
+        <img src="../assets/images/card_equipos/equipo_prueba.jpeg" alt="Orgullo">
+        <h3>Orgullo</h3>
+      </div>
+      <div class="equipo-card">
+        <img src="../assets/images/card_equipos/equipo_prueba.jpeg" alt="Victoria">
+        <h3>Victoria</h3>
+      </div>
+      <div class="equipo-card">
+        <img src="../assets/images/card_equipos/equipo_prueba.jpeg" alt="Tolerancia">
+        <h3>Tolerancia</h3>
+      </div>
+      <div class="equipo-card">
+        <img src="../assets/images/card_equipos/equipo_prueba.jpeg" alt="Jec">
+        <h3>Jec</h3>
+      </div>
+    </div>
+    <!--Prueba-->
+    <section class="torneo-tabs">
+  <div class="tabs">
+    <button class="tab" data-tab="grupo">Fase de Grupos</button>
+    <button class="tab" data-tab="oro">Copa Oro</button>
+    <button class="tab" data-tab="plata">Copa Plata</button>
+    <button class="tab" data-tab="bronce">Copa Bronce</button>
+    <button class="tab" data-tab="sonadores">Copa Soñadores</button>
+  </div>
+
+  <div class="tab-content active" id="grupo">
+    <!-- Aquí va el contenido de Fase de Grupos -->
+    <p>Contenido de Fase de Grupos (tabla, posiciones, etc.)</p>
+     <section class="info-categoria-doble">
+  <div class="calendario-container">
+    <h2>Calendario de Partidos</h2>
+    <div id="partidos-list"></div>
+    <div class="paginacion">
+      <button onclick="cambiarPagina(-1)">&laquo;</button>
+      <div id="paginas"></div>
+      <button onclick="cambiarPagina(1)">&raquo;</button>
+    </div>
+  </div>
+
+    <!-- POSICIONES -->
+    <div class="posiciones">
+      <h2>Tabla de Posiciones</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Equipo</th>
+            <th>Pts</th>
+            <th>PJ</th>
+            <th>PG</th>
+            <th>PE</th>
+            <th>PP</th>
+            <th>DG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Concientizar</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>2</td><td>Victoria</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>3</td><td>Orgullo</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>4</td><td>Jec</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>5</td><td>Tolerancia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <h2 style="margin-top: 30px;">Finales</h2>
+<table class="tabla-finales">
+  <thead>
+    <tr>
+      <th>Edad</th>
+      <th>Copa</th>
+      <th>Equipo 1</th>
+      <th>Categoría</th>
+      <th>Equipo 2</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Cancha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL ORO</td>
+      <td>PRIMERO</td>
+      <td class="categoria">2008-2009</td>
+      <td>SEGUNDO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL PLATA</td>
+      <td>TERCERO</td>
+      <td class="categoria">2008-2009</td>
+      <td>CUARTO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL BRONCE</td>
+      <td style="color: red;">PIERDE EN COPA PLATA</td>
+      <td class="categoria">2008-2009</td>
+      <td>QUINTO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+  <div class="tab-content" id="oro">
+     <section class="info-categoria-doble">
+  <div class="calendario-container">
+    <h2>Calendario de Partidos</h2>
+    <div id="partidos-list"></div>
+    <div class="paginacion">
+      <button onclick="cambiarPagina(-1)">&laquo;</button>
+      <div id="paginas"></div>
+      <button onclick="cambiarPagina(1)">&raquo;</button>
+    </div>
+  </div>
+
+    <!-- POSICIONES -->
+    <div class="posiciones">
+      <h2>Tablaaaaa de Posiciones</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Equipo</th>
+            <th>Pts</th>
+            <th>PJ</th>
+            <th>PG</th>
+            <th>PE</th>
+            <th>PP</th>
+            <th>DG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Concientizar</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>2</td><td>Victoria</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>3</td><td>Orgullo</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>4</td><td>Jec</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr><td>5</td><td>Tolerancia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <h2 style="margin-top: 30px;">Finales</h2>
+<table class="tabla-finales">
+  <thead>
+    <tr>
+      <th>Edad</th>
+      <th>Copa</th>
+      <th>Equipo 1</th>
+      <th>Categoría</th>
+      <th>Equipo 2</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Cancha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL ORO</td>
+      <td>PRIMERO</td>
+      <td class="categoria">2008-2009</td>
+      <td>SEGUNDO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL PLATA</td>
+      <td>TERCERO</td>
+      <td class="categoria">2008-2009</td>
+      <td>CUARTO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+    <tr>
+      <td>15 a 17 años</td>
+      <td>FINAL BRONCE</td>
+      <td style="color: red;">PIERDE EN COPA PLATA</td>
+      <td class="categoria">2008-2009</td>
+      <td>QUINTO</td>
+      <td>Domingo, 7 de septiembre de 2025</td>
+      <td class="por-definir">POR DEFINIR</td>
+      <td>ESTADIO DE FÚTBOL</td>
+    </tr>
+  </tbody>
+</table>
+    <p>Contenido de Copa Oro</p>
+  </div>
+  <div class="tab-content" id="plata">
+    <p>Contenido de Copa Plata</p>
+  </div>
+  <div class="tab-content" id="bronce">
+    <p>Contenido de Copa Bronce</p>
+  </div>
+  <div class="tab-content" id="sonadores">
+    <p>Contenido de Copa Soñadores</p>
+  </div>
+</section>
+</div>
+  </main>
+   <!-- Scripts -->
+  <script>
+    const partidos = [
+      { fecha: "AGO 03", hora: "17:00", fase: "F2.1 Fase de grupos", torneo: "Torneo Fútbol 5 Mixta 15 a 17 años", equipo1: "Victoria", equipo2: "Orgullo", lugar: "CBI - Soacha, Cancha de Fútbol 5 No. 2" },
+      { fecha: "AGO 03", hora: "16:00", fase: "F1.1 Fase de grupos", torneo: "Torneo Fútbol 5 Mixta 15 a 17 años", equipo1: "Jec", equipo2: "Victoria", lugar: "CBI - Soacha, Cancha de Fútbol 5 No. 2" },
+      { fecha: "AGO 03", hora: "15:00", fase: "F1.2 Fase de grupos", torneo: "Torneo Fútbol 5 Mixta 15 a 17 años", equipo1: "Orgullo", equipo2: "Tolerancia", lugar: "CBI - Soacha, Cancha de Fútbol 5 No. 2" },
+      { fecha: "AGO 03", hora: "15:00", fase: "F1.2 Fase de grupos", torneo: "Torneo Fútbol 5 Mixta 15 a 17 años", equipo1: "Orgullo", equipo2: "Tolerancia", lugar: "CBI - Soacha, Cancha de Fútbol 5 No. 2" },
+    ];
+
+    const porPagina = 3;
+    let paginaActual = 1;
+
+    function mostrarPartidos() {
+      const inicio = (paginaActual - 1) * porPagina;
+      const fin = inicio + porPagina;
+      const partidosPagina = partidos.slice(inicio, fin);
+      const container = document.getElementById("partidos-list");
+      container.innerHTML = "";
+
+      partidosPagina.forEach(p => {
+        container.innerHTML += `
+          <div class="partido">
+            <div class="fecha-hora">
+              <strong>${p.fecha}</strong><br>${p.hora}<br>
+              <img src="../assets/images/icono-fecha.png" alt="ícono" class="icono-fecha" />
+            </div>
+            <div class="info">
+              <div class="fase">${p.fase}</div>
+              <div class="torneo">${p.torneo}</div>
+              <div class="equipos">${p.equipo1} vs ${p.equipo2}</div>
+              <div class="lugar">📍 ${p.lugar}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      actualizarPaginacion();
+    }
+
+    function actualizarPaginacion() {
+      const totalPaginas = Math.ceil(partidos.length / porPagina);
+      const contenedor = document.getElementById("paginas");
+      contenedor.innerHTML = "";
+
+      for (let i = 1; i <= totalPaginas; i++) {
+        contenedor.innerHTML += `<button onclick="irPagina(${i})" class="${i === paginaActual ? 'activo' : ''}">${i}</button>`;
+      }
+    }
+
+    function cambiarPagina(direccion) {
+      const totalPaginas = Math.ceil(partidos.length / porPagina);
+      paginaActual += direccion;
+      if (paginaActual < 1) paginaActual = 1;
+      if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+      mostrarPartidos();
+    }
+
+    function irPagina(num) {
+      paginaActual = num;
+      mostrarPartidos();
+    }
+
+    mostrarPartidos();
+  </script>
+
+  <!-- SCRIPT PARA LOS TABS -->
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script src="../assets/scripts/include.js"></script>
+  
+</body>
+</html>
